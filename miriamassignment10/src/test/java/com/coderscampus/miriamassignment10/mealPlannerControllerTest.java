@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
@@ -29,7 +31,7 @@ public class mealPlannerControllerTest {
 		
 		RestTemplate restTemplateMock = mock(RestTemplate.class);
 		
-		WeekResponse sampleWeekResponse = new WeekResponse(); //need sample data
+		WeekResponse sampleWeekResponse = createSampleWeekResponse();
 		ResponseEntity<WeekResponse> sampleResponseEntity = new ResponseEntity<>(sampleWeekResponse, HttpStatus.OK);	
 		
 		when(restTemplateMock.getForEntity(any(URI.class), eq(WeekResponse.class))).thenReturn(sampleResponseEntity);
@@ -49,8 +51,31 @@ public class mealPlannerControllerTest {
 
 	}
 	
-	private WeekResponse.Day createSampleWeekResponse() {
+	private WeekResponse createSampleWeekResponse() {
+		WeekResponse weekResponse = new WeekResponse();
 		
+		WeekResponse.Week week = new WeekResponse.Week();
+		WeekResponse.Week.Day monday = new WeekResponse.Week.Day();
+		List<WeekResponse.Week.Meal> mondayMeals = new ArrayList<>();
+		
+		WeekResponse.Week.Meal meal1 = new WeekResponse.Week.Meal();
+		meal1.setId(655786);
+		meal1.setImageType("jpg");
+		meal1.setTitle("Persimmons Pumpkin Orange Smoothie With Chia Seeds");
+		meal1.setReadyInMinutes(45);
+		meal1.setServings(3);
+		meal1.setSourceUrl("https://spoonacular.com/persimmons-pumpkin-orange-smoothie-with-chia-seeds-655786");
+		
+		mondayMeals.add(meal1);
+		
+		monday.setMeals(mondayMeals);
+		monday.setNutrients(new WeekResponse.Week.Nutrients());
+		
+		week.setMonday(monday);
+		
+		weekResponse.setWeek(week);
+		
+		return weekResponse;
 	}
 
 }

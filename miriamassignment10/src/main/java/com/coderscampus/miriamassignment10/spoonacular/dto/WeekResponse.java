@@ -101,6 +101,22 @@ public class WeekResponse {
 
 			@JsonProperty("nutrients")
 			private Nutrients nutrients;
+
+			public List<Meal> getMeals() {
+				return meals;
+			}
+
+			public void setMeals(List<Meal> meals) {
+				this.meals = meals;
+			}
+
+			public Nutrients getNutrients() {
+				return nutrients;
+			}
+
+			public void setNutrients(Nutrients nutrients) {
+				this.nutrients = nutrients;
+			}
 		}
 
 		public static class Meal {
@@ -121,6 +137,54 @@ public class WeekResponse {
 
 			@JsonProperty("sourceUrl")
 			private String sourceUrl;
+
+			public long getId() {
+				return id;
+			}
+
+			public void setId(long id) {
+				this.id = id;
+			}
+
+			public String getImageType() {
+				return imageType;
+			}
+
+			public void setImageType(String imageType) {
+				this.imageType = imageType;
+			}
+
+			public String getTitle() {
+				return title;
+			}
+
+			public void setTitle(String title) {
+				this.title = title;
+			}
+
+			public int getReadyInMinutes() {
+				return readyInMinutes;
+			}
+
+			public void setReadyInMinutes(int readyInMinutes) {
+				this.readyInMinutes = readyInMinutes;
+			}
+
+			public int getServings() {
+				return servings;
+			}
+
+			public void setServings(int servings) {
+				this.servings = servings;
+			}
+
+			public String getSourceUrl() {
+				return sourceUrl;
+			}
+
+			public void setSourceUrl(String sourceUrl) {
+				this.sourceUrl = sourceUrl;
+			}
 		}
 
 		public static class Nutrients {
