@@ -14,7 +14,6 @@ import java.net.URISyntaxException;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
@@ -35,17 +34,23 @@ public class mealPlannerControllerTest {
 		
 		when(restTemplateMock.getForEntity(any(URI.class), eq(WeekResponse.class))).thenReturn(sampleResponseEntity);
 		
-		MealPlannerController mealPlannerController = new MealPlannerController();
-		
-		ReflectionTestUtils.setField(mealPlannerController, "restTemplate", restTemplateMock);
+		MealPlannerController mealPlannerController = new MealPlannerController(restTemplateMock);
 		
 		ResponseEntity<WeekResponse> result = mealPlannerController.getWeekMeals("1500", "vegetarian", "dairy");
 		
 		assertEquals(HttpStatus.OK, result.getStatusCode());
 		assertEquals(sampleWeekResponse, result.getBody());
 		
-		verify(restTemplateMock, times(1)).getForEntity(eq(new URI("https://api.spoonacular.com/generate?apiKey=" 
-		+ API_KEY + "&targetCalories=1500&diet=vegetarian&exclude=dairy")), eq(WeekResponse.class));
+		verify(restTemplateMock, times(1)).getForEntity(new URI("https://api.spoonacular.com/mealplanner/generate?apiKey=" 
+		+ API_KEY + "&targetCalories=1500&diet=vegetarian&exclude=dairy"), WeekResponse.class);
+		
+		System.out.println("Expected: " + sampleWeekResponse);
+		System.out.println("Actual: " + result.getBody());
+
+	}
+	
+	private WeekResponse.Day createSampleWeekResponse() {
+		
 	}
 
 }

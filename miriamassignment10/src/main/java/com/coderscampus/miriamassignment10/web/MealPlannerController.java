@@ -1,6 +1,7 @@
 package com.coderscampus.miriamassignment10.web;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +18,21 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 @RequestMapping("/mealplanner")
 public class MealPlannerController {
 	private static final String API_KEY = "0b39434da0644e9f9617f949da1fe6ad";
+	private final RestTemplate restTemplate;
+	
+	public MealPlannerController(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
 	
 	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
 			@RequestParam String numCalories, 
 			@RequestParam String diet, 
-			@RequestParam String exclusions) {
+			@RequestParam String exclusions)throws URISyntaxException{
 		RestTemplate restTemplate = new RestTemplate();
 		
-		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/generate")
-									  .queryParam("apiKey", API_KEY)
+		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
+									  .queryParam("apiKey", getApiKey())
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)
 									  .queryParam("exclude", exclusions)
@@ -40,12 +46,12 @@ public class MealPlannerController {
 	public ResponseEntity<DayResponse> getDayMeals(
 			@RequestParam(value = "targetCalories", required = false) String numCalories, 
 			@RequestParam(required = false) String diet, 
-			@RequestParam(value = "exclude", required = false) String exclusions) {
+			@RequestParam(value = "exclude", required = false) String exclusions) throws URISyntaxException{
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
 		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
-									  .queryParam("apiKey", API_KEY)
+									  .queryParam("apiKey", getApiKey())
 									  .queryParam("timeFrame", "day")
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)
@@ -55,5 +61,10 @@ public class MealPlannerController {
 		ResponseEntity<DayResponse> response = restTemplate.getForEntity(uri, DayResponse.class);						  
 				return response;
 	}
+
+	public static String getApiKey() {
+		return API_KEY;
+	}
+	
 
 }
