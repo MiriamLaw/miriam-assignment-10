@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
@@ -22,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 import com.coderscampus.miriamassignment10.web.MealPlannerController;
 
+@SpringBootTest
 public class mealPlannerControllerTest {
 	
 	private static final String API_KEY = "0b39434da0644e9f9617f949da1fe6ad";

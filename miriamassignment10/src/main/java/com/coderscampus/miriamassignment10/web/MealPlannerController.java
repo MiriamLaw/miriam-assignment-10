@@ -3,6 +3,7 @@ package com.coderscampus.miriamassignment10.web;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,22 +18,28 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 @RestController
 @RequestMapping("/mealplanner")
 public class MealPlannerController {
-	private static final String API_KEY = "0b39434da0644e9f9617f949da1fe6ad";
+	
+	@Value("${spoonacular.urls.base}")
+	private String baseUrl;
+	
+	@Value("${spoonacular.apiKey}")
+	private String apiKey;
+	
 	private final RestTemplate restTemplate;
 	
 	public MealPlannerController(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 	
-	@GetMapping("mealplanner/week")
+	@GetMapping("/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
 			@RequestParam String numCalories, 
 			@RequestParam String diet, 
 			@RequestParam String exclusions)throws URISyntaxException{
 		RestTemplate restTemplate = new RestTemplate();
 		
-		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
-									  .queryParam("apiKey", getApiKey())
+		URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl + "/mealplanner/generate")
+									  .queryParam("apiKey", apiKey)
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)
 									  .queryParam("exclude", exclusions)
@@ -50,8 +57,8 @@ public class MealPlannerController {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		URI uri = UriComponentsBuilder.fromHttpUrl("https://api.spoonacular.com/mealplanner/generate")
-									  .queryParam("apiKey", getApiKey())
+		URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl + "/mealplanner/generate")
+									  .queryParam("apiKey", apiKey)
 									  .queryParam("timeFrame", "day")
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)
@@ -62,9 +69,7 @@ public class MealPlannerController {
 				return response;
 	}
 
-	public static String getApiKey() {
-		return API_KEY;
-	}
+	
 	
 
 }
