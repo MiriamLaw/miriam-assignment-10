@@ -3,6 +3,7 @@ package com.coderscampus.miriamassignment10.web;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.coderscampus.miriamassignment10.config.SpoonacularProperties;
 import com.coderscampus.miriamassignment10.spoonacular.dto.DayResponse;
 import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 
@@ -19,11 +21,8 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 @RequestMapping("/mealplanner")
 public class MealPlannerController {
 	
-	@Value("${spoonacular.urls.base}")
-	private String baseUrl;
-	
-	@Value("${spoonacular.apiKey}")
-	private String apiKey;
+	@Autowired
+	private SpoonacularProperties spoonacularProperties;
 	
 	private final RestTemplate restTemplate;
 	
@@ -31,15 +30,15 @@ public class MealPlannerController {
 		this.restTemplate = restTemplate;
 	}
 	
-	@GetMapping("/week")
+	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
 			@RequestParam String numCalories, 
 			@RequestParam String diet, 
 			@RequestParam String exclusions)throws URISyntaxException{
 		RestTemplate restTemplate = new RestTemplate();
 		
-		URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl + "/mealplanner/generate")
-									  .queryParam("apiKey", apiKey)
+		URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
+									  .queryParam("apiKey", spoonacularProperties.getKey())
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)
 									  .queryParam("exclude", exclusions)
@@ -57,8 +56,8 @@ public class MealPlannerController {
 		
 		RestTemplate restTemplate = new RestTemplate();
 		
-		URI uri = UriComponentsBuilder.fromHttpUrl(baseUrl + "/mealplanner/generate")
-									  .queryParam("apiKey", apiKey)
+		URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
+									  .queryParam("apiKey", spoonacularProperties.getKey())
 									  .queryParam("timeFrame", "day")
 									  .queryParam("targetCalories", numCalories)
 									  .queryParam("diet", diet)

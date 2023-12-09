@@ -23,6 +23,16 @@ public class Meals {
 		@JsonProperty("sourceUrl")
 		private String sourceUrl;
 
+		public Meal(long id, String imageType, String title, int readyInMinutes, int servings, String sourceUrl) {
+			super();
+			this.id = id;
+			this.imageType = imageType;
+			this.title = title;
+			this.readyInMinutes = readyInMinutes;
+			this.servings = servings;
+			this.sourceUrl = sourceUrl;
+		}
+
 		public long getId() {
 			return id;
 		}
