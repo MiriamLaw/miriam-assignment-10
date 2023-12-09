@@ -1,4 +1,4 @@
-package com.coderscampus.miriamassignment10.dto;
+package com.coderscampus.miriamassignment10.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
