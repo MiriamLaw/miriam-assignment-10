@@ -1,22 +1,15 @@
 package com.coderscampus.miriamassignment10.config;
 
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-@Configuration
-@EnableConfigurationProperties(prefix = "spoonacular.api", classes = SpoonacularProperties.class)
+@Component
+@ConfigurationProperties(prefix = "spoonacular.api")
 public class SpoonacularProperties {
 	
 	private String baseUrl;
 	private String mealplan;
 	private String key;
-	
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
 
 	public String getBaseUrl() {
 		return baseUrl;

@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,12 +29,11 @@ public class MealPlannerController {
 		this.restTemplate = restTemplate;
 	}
 	
-	@GetMapping("mealplanner/week")
+	@GetMapping("/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
 			@RequestParam String numCalories, 
 			@RequestParam String diet, 
 			@RequestParam String exclusions)throws URISyntaxException{
-		RestTemplate restTemplate = new RestTemplate();
 		
 		URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
 									  .queryParam("apiKey", spoonacularProperties.getKey())
@@ -44,17 +42,17 @@ public class MealPlannerController {
 									  .queryParam("exclude", exclusions)
 									  .build()
 									  .toUri();
+		System.out.println("Generated URI: " + uri);
+		
 		ResponseEntity<WeekResponse> response = restTemplate.getForEntity(uri, WeekResponse.class);
 				return response;
 	}
 	
-	@GetMapping("mealplanner/day")
+	@GetMapping("/day")
 	public ResponseEntity<DayResponse> getDayMeals(
 			@RequestParam(value = "targetCalories", required = false) String numCalories, 
 			@RequestParam(required = false) String diet, 
 			@RequestParam(value = "exclude", required = false) String exclusions) throws URISyntaxException{
-		
-		RestTemplate restTemplate = new RestTemplate();
 		
 		URI uri = UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
 									  .queryParam("apiKey", spoonacularProperties.getKey())
