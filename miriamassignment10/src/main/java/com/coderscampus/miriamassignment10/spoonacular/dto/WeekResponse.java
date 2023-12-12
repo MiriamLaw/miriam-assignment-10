@@ -1,6 +1,5 @@
 package com.coderscampus.miriamassignment10.spoonacular.dto;
 
-import com.coderscampus.miriamassignment10.domain.Week;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeekResponse {

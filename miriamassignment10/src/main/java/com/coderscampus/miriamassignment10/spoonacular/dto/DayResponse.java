@@ -2,8 +2,7 @@ package com.coderscampus.miriamassignment10.spoonacular.dto;
 
 import java.util.List;
 
-import com.coderscampus.miriamassignment10.domain.Meals.Meal;
-import com.coderscampus.miriamassignment10.domain.Nutrients;
+import com.coderscampus.miriamassignment10.spoonacular.dto.Meals.Meal;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DayResponse {

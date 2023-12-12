@@ -1,4 +1,4 @@
-package com.coderscampus.miriamassignment10.domain;
+package com.coderscampus.miriamassignment10.spoonacular.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
