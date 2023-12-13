@@ -12,6 +12,10 @@ public class Nutrients {
 	private Integer fat;
 	@JsonProperty("protein")
 	private Integer protein;
+	
+	public Nutrients() {
+		
+	}
 
 	public Nutrients(Integer calories, Integer carbohydrates, Integer fat, Integer protein) {
 		super();

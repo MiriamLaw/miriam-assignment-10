@@ -22,6 +22,10 @@ public class Meals {
 
 		@JsonProperty("sourceUrl")
 		private String sourceUrl;
+		
+		public Meal() {
+			
+		}
 
 		public Meal(long id, String imageType, String title, int readyInMinutes, int servings, String sourceUrl) {
 			super();

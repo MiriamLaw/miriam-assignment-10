@@ -15,13 +15,20 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 @Service
 public class SpoonacularIntegrationService {
 
-	@Autowired
 	private SpoonacularProperties spoonacularProperties;
-
-	@Autowired
 	private RestTemplate restTemplate;
+	
+	@Autowired
+	public SpoonacularIntegrationService(SpoonacularProperties spoonacularProperties, RestTemplate restTemplate) {
+		super();
+		this.spoonacularProperties = spoonacularProperties;
+		this.restTemplate = restTemplate;
+	}
 
 	public ResponseEntity<DayResponse> getDayMeals(String numCalories, String diet, String exclusions) {
+		System.out.println("Base URL: " + spoonacularProperties.getBaseUrl());
+	    System.out.println("Meal Plan Endpoint: " + spoonacularProperties.getMealplan());
+	    System.out.println("API Key: " + spoonacularProperties.getKey());
 		URI uri = buildUri("day", numCalories, diet, exclusions);
 		return restTemplate.getForEntity(uri, DayResponse.class);
 	}
@@ -32,14 +39,27 @@ public class SpoonacularIntegrationService {
 	}
 
 	private URI buildUri(String timeFrame, String numCalories, String diet, String exclusions) {
-        return UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
+         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
                                    .queryParam("apiKey", spoonacularProperties.getKey())
-                                   .queryParam("timeFrame", timeFrame)
-                                   .queryParam("targetCalories", numCalories)
-                                   .queryParam("diet", diet)
-                                   .queryParam("exclude", exclusions)
-                                   .build()
-                                   .toUri();
+                                   .queryParam("timeFrame", timeFrame);
+         if (numCalories != null && !numCalories.isEmpty()) {
+        	 builder.queryParam("targetCalories", numCalories);
+        	 
+         }
+         
+         if (diet != null && !diet.isEmpty()) {
+        	 builder.queryParam("diet", diet);
+        	 
+         }
+         
+         if (exclusions != null && !exclusions.isEmpty()) {
+        	 builder.queryParam("exclude", exclusions);
+        	 
+         }
+                                   
+        URI uri = builder.build().toUri();                           
+        System.out.println("Constructed URI: " + uri.toString());
+        return uri;
 	}
 
 }

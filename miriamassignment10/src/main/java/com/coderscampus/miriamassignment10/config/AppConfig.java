@@ -1,11 +1,12 @@
 package com.coderscampus.miriamassignment10.config;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-//@EnableConfigurationProperties(SpoonacularProperties.class)
+@EnableConfigurationProperties(SpoonacularProperties.class)
 public class AppConfig {
 
 	@Bean

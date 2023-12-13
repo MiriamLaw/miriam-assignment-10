@@ -3,19 +3,32 @@ package com.coderscampus.miriamassignment10.spoonacular.dto;
 import java.util.List;
 
 import com.coderscampus.miriamassignment10.spoonacular.dto.Meals.Meal;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DayResponse {
 
 	public static class Day {
-		@JsonProperty("meals")
+//		@JsonProperty("meals")
 		private List<Meal> meals;
 
-		@JsonProperty("nutrients")
+//		@JsonProperty("nutrients")
 		private Nutrients nutrients;
+
+		public Day() {
+
+		}
+
+		public Day(List<Meal> meals, Nutrients nutrients) {
+			super();
+			this.meals = meals;
+			this.nutrients = nutrients;
+		}
 
 		public List<Meal> getMeals() {
 			return meals;
+		}
+
+		public void setMeals(List<Meal> meals) {
+			this.meals = meals;
 		}
 
 		public Nutrients getNutrients() {
@@ -25,10 +38,5 @@ public class DayResponse {
 		public void setNutrients(Nutrients nutrients) {
 			this.nutrients = nutrients;
 		}
-
-		public void setMeals(List<Meal> meals) {
-			this.meals = meals;
-		}
 	}
-
 }

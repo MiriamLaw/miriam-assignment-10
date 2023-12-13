@@ -8,6 +8,10 @@ public class Week {
 	private DayResponse friday;
 	private DayResponse saturday;
 	private DayResponse sunday;
+	
+	public Week() {
+		
+	}
 	public DayResponse getMonday() {
 		return monday;
 	}

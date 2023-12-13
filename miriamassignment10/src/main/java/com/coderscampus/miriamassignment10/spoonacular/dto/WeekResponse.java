@@ -1,11 +1,13 @@
 package com.coderscampus.miriamassignment10.spoonacular.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class WeekResponse {
 
-	@JsonProperty("week")
+//	@JsonProperty("week")
 	private Week week;
+	
+	public WeekResponse() {
+		
+	}
 
 	public WeekResponse(Week week) {
 		super();
