@@ -1,28 +1,22 @@
 package com.coderscampus.miriamassignment10.spoonacular.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Nutrients {
-	
-	@JsonProperty("calories")
+
 	private Integer calories;
-	@JsonProperty("carbohydrates")
-	private Integer carbohydrates;
-	@JsonProperty("fat")
-	private Integer fat;
-	@JsonProperty("protein")
 	private Integer protein;
-	
+	private Integer fat;
+	private Integer carbohydrates;
+
 	public Nutrients() {
-		
+
 	}
 
-	public Nutrients(Integer calories, Integer carbohydrates, Integer fat, Integer protein) {
+	public Nutrients(Integer calories, Integer protein, Integer fat, Integer carbohydrates) {
 		super();
 		this.calories = calories;
-		this.carbohydrates = carbohydrates;
-		this.fat = fat;
 		this.protein = protein;
+		this.fat = fat;
+		this.carbohydrates = carbohydrates;
 	}
 
 	public Integer getCalories() {
@@ -33,12 +27,12 @@ public class Nutrients {
 		this.calories = calories;
 	}
 
-	public Integer getCarbohydrates() {
-		return carbohydrates;
+	public Integer getProtein() {
+		return protein;
 	}
 
-	public void setCarbohydrates(Integer carbohydrates) {
-		this.carbohydrates = carbohydrates;
+	public void setProtein(Integer protein) {
+		this.protein = protein;
 	}
 
 	public Integer getFat() {
@@ -49,13 +43,12 @@ public class Nutrients {
 		this.fat = fat;
 	}
 
-	public Integer getProtein() {
-		return protein;
+	public Integer getCarbohydrates() {
+		return carbohydrates;
 	}
 
-	public void setProtein(Integer protein) {
-		this.protein = protein;
+	public void setCarbohydrates(Integer carbohydrates) {
+		this.carbohydrates = carbohydrates;
 	}
 
-	
 }

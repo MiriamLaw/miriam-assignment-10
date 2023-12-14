@@ -7,10 +7,8 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.Meals.Meal;
 public class DayResponse {
 
 	public static class Day {
-//		@JsonProperty("meals")
-		private List<Meal> meals;
 
-//		@JsonProperty("nutrients")
+		private List<Meal> meals;
 		private Nutrients nutrients;
 
 		public Day() {

@@ -1,30 +1,17 @@
 package com.coderscampus.miriamassignment10.spoonacular.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class Meals {
 
 	public static class Meal {
-		@JsonProperty("id")
 		private long id;
-
-		@JsonProperty("imageType")
 		private String imageType;
-
-		@JsonProperty("title")
 		private String title;
-
-		@JsonProperty("readyInMinutes")
 		private int readyInMinutes;
-
-		@JsonProperty("servings")
 		private int servings;
-
-		@JsonProperty("sourceUrl")
 		private String sourceUrl;
-		
+
 		public Meal() {
-			
+
 		}
 
 		public Meal(long id, String imageType, String title, int readyInMinutes, int servings, String sourceUrl) {

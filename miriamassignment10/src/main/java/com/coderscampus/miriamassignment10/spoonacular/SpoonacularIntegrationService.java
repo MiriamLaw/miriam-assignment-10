@@ -9,8 +9,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.coderscampus.miriamassignment10.config.SpoonacularProperties;
-import com.coderscampus.miriamassignment10.spoonacular.dto.DayResponse;
-import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 
 @Service
 public class SpoonacularIntegrationService {
@@ -25,17 +23,26 @@ public class SpoonacularIntegrationService {
 		this.restTemplate = restTemplate;
 	}
 
-	public ResponseEntity<DayResponse> getDayMeals(String numCalories, String diet, String exclusions) {
+//	public ResponseEntity<DayResponse> getDayMeals(String numCalories, String diet, String exclusions) {
+	public ResponseEntity<String> getDayMeals(String numCalories, String diet, String exclusions) {
 		System.out.println("Base URL: " + spoonacularProperties.getBaseUrl());
 	    System.out.println("Meal Plan Endpoint: " + spoonacularProperties.getMealplan());
 	    System.out.println("API Key: " + spoonacularProperties.getKey());
 		URI uri = buildUri("day", numCalories, diet, exclusions);
-		return restTemplate.getForEntity(uri, DayResponse.class);
+		ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+		System.out.println("Raw JSON Response: " + response.getBody());
+//		return restTemplate.getForEntity(uri, DayResponse.class);
+		return response;
 	}
 
-	public ResponseEntity<WeekResponse> getWeekMeals(String numCalories, String diet, String exclusions) {
+//	public ResponseEntity<WeekResponse> getWeekMeals(String numCalories, String diet, String exclusions) {
+	public ResponseEntity<String> getWeekMeals(String numCalories, String diet, String exclusions) {
+
 		URI uri = buildUri("week", numCalories, diet, exclusions);
-		return restTemplate.getForEntity(uri, WeekResponse.class);
+		ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+		System.out.println("Raw JSON response: " + response.getBody());
+//		return restTemplate.getForEntity(uri, WeekResponse.class);
+		return response;
 	}
 
 	private URI buildUri(String timeFrame, String numCalories, String diet, String exclusions) {
