@@ -2,39 +2,34 @@ package com.coderscampus.miriamassignment10.spoonacular.dto;
 
 import java.util.List;
 
-import com.coderscampus.miriamassignment10.spoonacular.dto.Meals.Meal;
-
 public class DayResponse {
 
-	public static class Day {
+	private List<Meals.Meal> meals;
+	private Nutrients nutrients;
 
-		private List<Meal> meals;
-		private Nutrients nutrients;
+	public DayResponse() {
 
-		public Day() {
+	}
 
-		}
+	public DayResponse(List<Meals.Meal> meals, Nutrients nutrients) {
+		super();
+		this.meals = meals;
+		this.nutrients = nutrients;
+	}
 
-		public Day(List<Meal> meals, Nutrients nutrients) {
-			super();
-			this.meals = meals;
-			this.nutrients = nutrients;
-		}
+	public List<Meals.Meal> getMeals() {
+		return meals;
+	}
 
-		public List<Meal> getMeals() {
-			return meals;
-		}
+	public void setMeals(List<Meals.Meal> meals) {
+		this.meals = meals;
+	}
 
-		public void setMeals(List<Meal> meals) {
-			this.meals = meals;
-		}
+	public Nutrients getNutrients() {
+		return nutrients;
+	}
 
-		public Nutrients getNutrients() {
-			return nutrients;
-		}
-
-		public void setNutrients(Nutrients nutrients) {
-			this.nutrients = nutrients;
-		}
+	public void setNutrients(Nutrients nutrients) {
+		this.nutrients = nutrients;
 	}
 }

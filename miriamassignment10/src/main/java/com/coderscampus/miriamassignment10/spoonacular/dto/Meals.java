@@ -72,4 +72,5 @@ public class Meals {
 			this.sourceUrl = sourceUrl;
 		}
 	}
+
 }

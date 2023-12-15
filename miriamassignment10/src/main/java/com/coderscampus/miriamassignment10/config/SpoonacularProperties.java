@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "api.spoonacular.com")
 public class SpoonacularProperties {
-	
+
 	private String baseUrl;
 	private String mealplan;
 	private String key;
