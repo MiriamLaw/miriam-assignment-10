@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "2da9f807-5a0c-4e5b-8a53-8ec78467a70c",
+		"name": "Spoonacular",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31111729"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spoonacular.com/mealplanner/generate?day=tuesday&apiKey=0b39434da0644e9f9617f949da1fe6ad&week",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spoonacular.com/mealplanner/generate?day=tuesday&apiKey=0b39434da0644e9f9617f949da1fe6ad&week",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spoonacular",
+						"com"
+					],
+					"path": [
+						"mealplanner",
+						"generate"
+					],
+					"query": [
+						{
+							"key": "day",
+							"value": "tuesday"
+						},
+						{
+							"key": "apiKey",
+							"value": "0b39434da0644e9f9617f949da1fe6ad"
+						},
+						{
+							"key": "week",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mealplanner/day?apiKey=0b39434da0644e9f9617f949da1fe6ad&numCalories=2500&diet=vegan&exclusions=cheese",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mealplanner/day?apiKey=0b39434da0644e9f9617f949da1fe6ad&numCalories=2500&diet=vegan&exclusions=cheese",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mealplanner",
+						"day"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "0b39434da0644e9f9617f949da1fe6ad"
+						},
+						{
+							"key": "numCalories",
+							"value": "2500"
+						},
+						{
+							"key": "diet",
+							"value": "vegan"
+						},
+						{
+							"key": "exclusions",
+							"value": "cheese"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mealplanner/week?apiKey=0b39434da0644e9f9617f949da1fe6ad&numCalories=1900&diet=vegan&exclusions=nuts&",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/mealplanner/week?apiKey=0b39434da0644e9f9617f949da1fe6ad&numCalories=1900&diet=vegan&exclusions=nuts&",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mealplanner",
+						"week"
+					],
+					"query": [
+						{
+							"key": "apiKey",
+							"value": "0b39434da0644e9f9617f949da1fe6ad"
+						},
+						{
+							"key": "numCalories",
+							"value": "1900"
+						},
+						{
+							"key": "diet",
+							"value": "vegan"
+						},
+						{
+							"key": "exclusions",
+							"value": "nuts"
+						},
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -13,7 +13,7 @@ import com.coderscampus.miriamassignment10.spoonacular.dto.WeekResponse;
 @RestController
 @RequestMapping("/mealplanner")
 public class MealPlannerController {
-	
+
 	private SpoonacularIntegrationService spoonacularIntegrationService;
 
 	public MealPlannerController(SpoonacularIntegrationService spoonacularIntegrationService) {
@@ -23,21 +23,18 @@ public class MealPlannerController {
 
 	@GetMapping("/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(
-			@RequestParam(value = "numCalories", required = false) String numCalories, 
-			@RequestParam(value = "diet", required=false) String diet, 
-			@RequestParam(value = "exclusions", required = false) String exclusions){
+			@RequestParam(value = "numCalories", required = false) String numCalories,
+			@RequestParam(value = "diet", required = false) String diet,
+			@RequestParam(value = "exclusions", required = false) String exclusions) {
 		return spoonacularIntegrationService.getWeekMeals(numCalories, diet, exclusions);
 	}
-	
+
 	@GetMapping("/day")
 	public ResponseEntity<DayResponse> getDayMeals(
-			@RequestParam(value = "targetCalories", required = false) String numCalories, 
-			@RequestParam(required = false) String diet, 
+			@RequestParam(value = "targetCalories", required = false) String numCalories,
+			@RequestParam(required = false) String diet,
 			@RequestParam(value = "exclude", required = false) String exclusions) {
 		return spoonacularIntegrationService.getDayMeals(numCalories, diet, exclusions);
 	}
-
-	
-	
 
 }

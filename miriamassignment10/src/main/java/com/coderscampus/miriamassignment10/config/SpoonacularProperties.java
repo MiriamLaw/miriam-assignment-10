@@ -9,7 +9,7 @@ public class SpoonacularProperties {
 
 	private String baseUrl;
 	private String mealplan;
-	private String key;
+	private String key = System.getenv("SPOONACULAR_API_KEY");
 
 	public String getBaseUrl() {
 		return baseUrl;
