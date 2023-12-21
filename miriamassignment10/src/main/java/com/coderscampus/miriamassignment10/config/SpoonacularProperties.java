@@ -1,5 +1,6 @@
 package com.coderscampus.miriamassignment10.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,9 @@ public class SpoonacularProperties {
 
 	private String baseUrl;
 	private String mealplan;
-	private String key = System.getenv("SPOONACULAR_API_KEY");
+
+	@Value("${api.spoonacular.com.key}")
+	private String key;
 
 	public String getBaseUrl() {
 		return baseUrl;
