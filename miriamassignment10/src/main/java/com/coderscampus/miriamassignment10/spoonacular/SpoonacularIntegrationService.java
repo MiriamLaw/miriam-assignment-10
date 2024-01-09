@@ -1,6 +1,7 @@
 package com.coderscampus.miriamassignment10.spoonacular;
 
 import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -38,21 +39,10 @@ public class SpoonacularIntegrationService {
 	private URI buildUri(String timeFrame, String numCalories, String diet, String exclusions) {
 		UriComponentsBuilder builder = UriComponentsBuilder
 				.fromHttpUrl(spoonacularProperties.getBaseUrl() + spoonacularProperties.getMealplan())
-				.queryParam("apiKey", spoonacularProperties.getKey()).queryParam("timeFrame", timeFrame);
-		if (numCalories != null && !numCalories.isEmpty()) {
-			builder.queryParam("targetCalories", numCalories);
-
-		}
-
-		if (diet != null && !diet.isEmpty()) {
-			builder.queryParam("diet", diet);
-
-		}
-
-		if (exclusions != null && !exclusions.isEmpty()) {
-			builder.queryParam("exclude", exclusions);
-
-		}
+				.queryParam("apiKey", spoonacularProperties.getKey()).queryParam("timeFrame", timeFrame)
+				.queryParamIfPresent("targetCalories", Optional.ofNullable(numCalories))
+				.queryParamIfPresent("diet", Optional.ofNullable(diet))
+				.queryParamIfPresent("exclude", Optional.ofNullable(exclusions));
 
 		URI uri = builder.build().toUri();
 		return uri;
